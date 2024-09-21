@@ -1,14 +1,9 @@
-import { testDictionary, realDictionary } from './dictionary.js';
+import {hardDictionary, easyDictionary} from './dictionary.js';
 
-// for testing purposes, make sure to use the test dictionary
-console.log('test dictionary:', testDictionary);
 
-const dictionary = realDictionary;
 const state = {
-  secret: dictionary[Math.floor(Math.random() * dictionary.length)],
-  grid: Array(6)
-    .fill()
-    .map(() => Array(5).fill('')),
+  secret: hardDictionary[Math.floor(Math.random() * hardDictionary.length)],
+  grid: Array(6).fill().map(() => Array(5).fill('')),
   currentRow: 0,
   currentCol: 0,
 };
@@ -56,7 +51,7 @@ function registerKeyboardEvents() {
           state.currentRow++;
           state.currentCol = 0;
         } else {
-          alert('Not a valid word.');
+          shakeGrid();
         }
       }
     }
@@ -71,20 +66,18 @@ function registerKeyboardEvents() {
   };
 }
 
-function getCurrentWord() {
+function getCurrentWord() { //concatena las letras de toda la fila
   return state.grid[state.currentRow].reduce((prev, curr) => prev + curr);
 }
 
-function isWordValid(word) {
-  return dictionary.includes(word);
+function isWordValid(word) { //verifica si la palabra existe en el diccionario
+  return easyDictionary.includes(word) || hardDictionary.includes(word);
 }
 
 function getNumOfOccurrencesInWord(word, letter) {
   let result = 0;
   for (let i = 0; i < word.length; i++) {
-    if (word[i] === letter) {
-      result++;
-    }
+    if (word[i] === letter) {result++;}
   }
   return result;
 }
@@ -92,42 +85,27 @@ function getNumOfOccurrencesInWord(word, letter) {
 function getPositionOfOccurrence(word, letter, position) {
   let result = 0;
   for (let i = 0; i <= position; i++) {
-    if (word[i] === letter) {
-      result++;
-    }
+    if (word[i] === letter) {result++;}
   }
   return result;
 }
 
 function revealWord(guess) {
   const row = state.currentRow;
-  const animation_duration = 500; // ms
+  const animation_duration = 150; // ms
 
   for (let i = 0; i < 5; i++) {
     const box = document.getElementById(`box${row}${i}`);
     const letter = box.textContent;
-    const numOfOccurrencesSecret = getNumOfOccurrencesInWord(
-      state.secret,
-      letter
-    );
+    const numOfOccurrencesSecret = getNumOfOccurrencesInWord(state.secret,letter);
     const numOfOccurrencesGuess = getNumOfOccurrencesInWord(guess, letter);
     const letterPosition = getPositionOfOccurrence(guess, letter, i);
 
     setTimeout(() => {
-      if (
-        numOfOccurrencesGuess > numOfOccurrencesSecret &&
-        letterPosition > numOfOccurrencesSecret
-      ) {
-        box.classList.add('empty');
-      } else {
-        if (letter === state.secret[i]) {
-          box.classList.add('right');
-        } else if (state.secret.includes(letter)) {
-          box.classList.add('wrong');
-        } else {
-          box.classList.add('empty');
-        }
-      }
+      if (numOfOccurrencesGuess > numOfOccurrencesSecret && letterPosition > numOfOccurrencesSecret){box.classList.add('empty');}
+      else {if (letter === state.secret[i]) {box.classList.add('right');} 
+      else if (state.secret.includes(letter)) {box.classList.add('wrong');}
+      else {box.classList.add('empty');}}
     }, ((i + 1) * animation_duration) / 2);
 
     box.classList.add('animated');
@@ -139,15 +117,15 @@ function revealWord(guess) {
 
   setTimeout(() => {
     if (isWinner) {
-      alert('Congratulations!');
+      alert('Ganaste!');
     } else if (isGameOver) {
-      alert(`Better luck next time! The word was ${state.secret}.`);
+      alert(`La palabra era: ${state.secret}.`);
     }
   }, 3 * animation_duration);
 }
 
-function isLetter(key) {
-  return key.length === 1 && key.match(/[a-z]/i);
+function isLetter(key) { //verifica que lo ingresado sea una letra
+  return key.length === 1 && key.match(/[a-zñ]/i);
 }
 
 function addLetter(letter) {
@@ -162,11 +140,24 @@ function removeLetter() {
   state.currentCol--;
 }
 
+function shakeGrid() {
+  const grid = document.querySelector('.grid');
+  grid.classList.add('shake');
+
+  setTimeout(() => {
+    grid.classList.remove('shake');
+  }, 300); // Duración de la animación
+}
+
 function startup() {
   const game = document.getElementById('game');
   drawGrid(game);
 
   registerKeyboardEvents();
 }
+
+document.getElementById('restartButton').addEventListener('click', () => {
+  location.reload(); // Recarga la página
+});
 
 startup();
