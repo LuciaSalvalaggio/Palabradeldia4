@@ -91,7 +91,7 @@ body {
 .button-container {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
-  margin: 21% 0; /* Espacio arriba y abajo */
+  margin: 7% 0; /* Espacio arriba y abajo */
 }
 
 .btn {
