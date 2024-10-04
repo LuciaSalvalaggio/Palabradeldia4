@@ -2,10 +2,24 @@ html,
 body {
   background: var(--default);
   margin-top: 2%;
+  color: white; /* Color del texto por defecto */
+  margin: 0; /* Elimina el margen predeterminado */
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body.light-mode {
+  background: var(--background);
+  color: black; /* Color del texto en modo claro */
+}
+
+body.light-mode .title {
+  color: black; /* Color del título en modo claro */
 }
 
 :root {
-  --default: #000000;
+  --default: #000000; /* Modo oscuro */
+  --background: #ffffff; /* Modo claro */
   --empty: #3a3a3c;
   --wrong: #b59f3b;
   --right: #538d4e;
@@ -74,6 +88,7 @@ body {
   font-size: 3rem;
   margin-bottom: 0;
   position: relative;
+  flex-grow: 1; 
 }
 
 .shake {
@@ -91,7 +106,13 @@ body {
 .button-container {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
-  margin: 7% 0; /* Espacio arriba y abajo */
+  margin: 20px 0; /* Espacio arriba y abajo */
+}
+
+.header-container .btn{
+  margin-left: 85%;
+  margin-top: 1%; 
+  /*background-color: transparent;*/
 }
 
 .btn {
@@ -104,6 +125,7 @@ body {
   cursor: pointer; /* Cambia el cursor al pasar el ratón */
   transition: background-color 0.3s; /* Transición suave para el color de fondo */
 }
+
 
 .btn:hover {
   background-color: #218838; /* Color de fondo al pasar el ratón */

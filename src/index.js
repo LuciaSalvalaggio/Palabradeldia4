@@ -157,7 +157,12 @@ function startup() {
 }
 
 document.getElementById('restartButton').addEventListener('click', () => {
-  location.reload(); // Recarga la página
+  location.reload();
+});
+
+document.getElementById('modeToggle').addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  const modeToggleButton = document.getElementById('modeToggle');
 });
 
 startup();

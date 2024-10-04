@@ -5,6 +5,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
       <title>Wordle</title>
 
@@ -12,6 +13,13 @@
     </head>
 
     <body>
+
+      <div class="header-container">
+        <button id="modeToggle" type="button" class="btn colormode" aria-label="Cambiar modo claro/oscuro">
+          <i class="bi bi-circle-half"></i>
+        </button>
+      </div>
+      
       <h1 class="title">Wordle</h1>
       
       <div id="game"></div>
