@@ -2,19 +2,19 @@ html,
 body {
   background: var(--default);
   margin-top: 2%;
-  color: white; /* Color del texto por defecto */
-  margin: 0; /* Elimina el margen predeterminado */
+  color: white;
+  margin: 0;
   height: 100%;
   overflow-x: hidden;
 }
 
 body.light-mode {
   background: var(--background);
-  color: black; /* Color del texto en modo claro */
+  color: black;
 }
 
 body.light-mode .title {
-  color: black; /* Color del título en modo claro */
+  color: black;
 }
 
 :root {
@@ -23,6 +23,23 @@ body.light-mode .title {
   --empty: #3a3a3c;
   --wrong: #b59f3b;
   --right: #538d4e;
+}
+
+/* El texto por defecto en modo claro */
+body.light-mode .box {
+  color: black; /* Letras negras mientras se escribe en modo claro */
+}
+
+/* Texto por defecto en modo oscuro */
+body .box {
+  color: white; /* Letras blancas mientras se escribe en modo oscuro */
+}
+
+/* Letras blancas después de la validación, en ambos modos */
+.box.wrong,
+.box.right,
+.box.empty {
+  color: white !important; /* Letras blancas después de la validación en cualquier modo */
 }
 
 #game {
@@ -45,7 +62,6 @@ body.light-mode .title {
   height: 60px;
   border: 2px solid var(--empty);
   margin: 4px;
-  color: white;
   text-transform: uppercase;
   display: grid;
   place-items: center;
@@ -53,6 +69,7 @@ body.light-mode .title {
   font-size: 2.4rem;
 }
 
+/* Estilos de los cubos después de la validación */
 .box.empty {
   background: var(--empty);
 }
@@ -105,28 +122,26 @@ body.light-mode .title {
 
 .button-container {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  margin: 20px 0; /* Espacio arriba y abajo */
+  justify-content: center;
+  margin: 20px 0;
 }
 
-.header-container .btn{
+.header-container .btn {
   margin-left: 85%;
-  margin-top: 1%; 
-  /*background-color: transparent;*/
+  margin-top: 1%;
 }
 
 .btn {
-  padding: 10px 20px; /* Ajusta el tamaño del botón */
-  font-size: 25px; /* Tamaño de fuente */
-  background-color: #28a745; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  border-radius: 10px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+  padding: 10px 20px;
+  font-size: 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-
 .btn:hover {
-  background-color: #218838; /* Color de fondo al pasar el ratón */
+  background-color: #218838;
 }
