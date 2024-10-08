@@ -141,7 +141,18 @@ export const hardDictionary = [
   "riñar",
   "otoño",
   "muñon",
-  "puñal"
+  "puñal",
+  "volar",
+  "erizo",
+  "hogar",
+  "fusta",
+  "ibero",
+  "prole",
+  "lapso",
+  "fijar",
+  "virus",
+  "miedo";
+  "teñir",
     ];
 
 export const easyDictionary = [
