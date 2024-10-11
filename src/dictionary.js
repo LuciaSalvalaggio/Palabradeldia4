@@ -151,7 +151,7 @@ export const hardDictionary = [
   "lapso",
   "fijar",
   "virus",
-  "miedo";
+  "miedo",
   "teñir",
     ];
 
